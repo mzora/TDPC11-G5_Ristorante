@@ -13,5 +13,19 @@ namespace TDPC11_G5_Ristorante
         {
 
         }
+
+        protected void BTNSubmit_CLick(object sender, EventArgs e)
+        {
+            if (DAL.validLogin(TXTUser.Text,TXTPsw.Text))
+            {
+                Session["currentUser"] = TXTUser.Text;
+                Session["currentPsw"] = TXTPsw.Text;
+                Response.Redirect("Prenotazione.aspx", true);
+            }
+            else
+            {
+                Response.Redirect("Default.aspx",true);
+            }
+        }
     }
 }

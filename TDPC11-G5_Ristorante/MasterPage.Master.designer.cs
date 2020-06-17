@@ -15,48 +15,39 @@ namespace TDPC11_G5_Ristorante
     {
 
         /// <summary>
-        /// head control.
+        /// Head_PlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Head_PlaceHolder;
 
         /// <summary>
-        /// form1 control.
+        /// Nav_PlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Nav_PlaceHolder;
 
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// Body_PlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder Body_PlaceHolder;
 
         /// <summary>
-        /// ContentPlaceHolder2 control.
+        /// LinksJavaScript_PlaceHolder control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder2;
-
-        /// <summary>
-        /// LinksJavaScript control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder LinksJavaScript;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder LinksJavaScript_PlaceHolder;
     }
 }
