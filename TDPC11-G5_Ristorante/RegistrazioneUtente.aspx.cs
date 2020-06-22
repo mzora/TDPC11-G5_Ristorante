@@ -13,5 +13,16 @@ namespace TDPC11_G5_Ristorante
         {
 
         }
+
+        protected void BTNSubmit_Click(object sender, EventArgs e)
+        {
+            Cliente cliente = new Cliente();
+            cliente.Cognome = TXTCognome.Text;
+            cliente.Email = TXTEmail.Text;
+            cliente.Phone = TXTPhone.Text;
+            cliente.Username = TXTUsr.Text;
+            cliente.Password = TXTPsw.Text;
+            DAL.insertNewCliente(cliente);
+        }
     }
 }
