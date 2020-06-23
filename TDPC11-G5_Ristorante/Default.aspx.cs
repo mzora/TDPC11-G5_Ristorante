@@ -16,14 +16,14 @@ namespace TDPC11_G5_Ristorante
 
         protected void BTNSubmit_CLick(object sender, EventArgs e)
         {
-            bool isValidUser = DAL.validLogin(TXTUser.Text, TXTPsw.Text);
+            bool isValidUser = DAL.ValidateLogin(TXTUser.Text, TXTPsw.Text);
             if (isValidUser)
             {
-                Session["username"] = TXTUser.Text;
+                Session["Username"] = TXTUser.Text;
                 Response.Redirect("Prenotazione.aspx", true);
             }
             LBLOutput.Text = "Login errato/Registrati";
-        }
+        } 
 
         protected void BTNReg_CLick(object sender, EventArgs e)
         {
