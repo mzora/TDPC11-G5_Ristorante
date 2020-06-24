@@ -18,6 +18,7 @@ namespace TDPC11_G5_Ristorante
         {
             Cliente cliente = new Cliente();
             cliente.Cognome = TXTCognome.Text;
+            cliente.Nome = TXTNome.Text;
             cliente.Email = TXTEmail.Text;
             cliente.Phone = TXTPhone.Text;
             cliente.Username = TXTUsr.Text;
