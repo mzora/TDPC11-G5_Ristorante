@@ -11,10 +11,15 @@
             <div class="row">
                 <div class="col-4">
                     Inserisci il tuo Cognome:
-                   <asp:TextBox ID="TXTCognome" runat="server" class="form-control">cognome</asp:TextBox>
+                   <asp:TextBox ID="TXTCognome" runat="server" class="form-control"></asp:TextBox>
                 </div>
             </div>
-            
+            <div class="row">
+                <div class="col-4">
+                    Inserisci il tuo Nome:
+                   <asp:TextBox ID="TextNome" runat="server" class="form-control"></asp:TextBox>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-4">
                     Email:

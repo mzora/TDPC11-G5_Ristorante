@@ -9,13 +9,15 @@
         <div class="container col-12 no-gutters">
             <div id="formBox" class="col-sm-2 offset-sm-10">
                 <div id="formItem" class="form-group">
-                    <asp:TextBox id="TXTUser" runat="server" CssClass="form-control">Username</asp:TextBox>
+                    Digita il tuo Username:
+                    <asp:TextBox id="TXTUser" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div id="formItem1" class="form-group">
-                    <asp:TextBox id="TXTPsw" runat="server" CssClass="form-control">Password</asp:TextBox>
+                    Digita la tua password:
+                    <asp:TextBox id="TXTPsw" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div id="formItemBtn" class="form-group">
-                    <asp:Button id="BTNSubmit" runat="server" Text="Login per prenotare" OnCLick="BTNSubmit_CLick" CssClass="btn btn-link" />
+                    <asp:Button id="BTNSubmit" runat="server" Text="Login per prenotare" OnCLick="BTNSubmit_CLick" CssClass="btn btn-link" /> 
                     <asp:Button id="BTNReg" runat="server" Text="Registrati" OnCLick="BTNReg_CLick" CssClass="btn btn-link" />
                 </div>
                 <asp:Label ID="LBLOutput" runat="server"></asp:Label>

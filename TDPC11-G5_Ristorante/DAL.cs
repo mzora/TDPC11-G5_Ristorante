@@ -10,39 +10,27 @@ namespace TDPC11_G5_Ristorante
 {
     public class DAL
     {
-        static string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
+        
 
         public static void insertNewCliente(Cliente c)
         {
-            string query = @"";
+            
+            string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
+            string query = "insert into [dbo].[DBRistorante.Clienti] ( [Cognome], [Nome], [Email], [Phone], [Username], [Password]) values ( @Cognome, @Nome,  @Email, @Phone,@Username, @Password)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                SqlCommand command = new SqlCommand(query, connection);
                 try
                 {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Username", c.Username);
+                    command.Parameters.AddWithValue("@Password", c.Password);
+                    command.Parameters.AddWithValue("@Cognome", c.Cognome);
+                    command.Parameters.AddWithValue("@Nome", c.Nome);
+                    command.Parameters.AddWithValue("@Email", c.Email);
+                    command.Parameters.AddWithValue("@Phone", c.Phone);
                     connection.Open();
-                    command.ExecuteReader();
-                }
-                catch (Exception ex)
-                {
-
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }            
-        }
-         public static bool validLogin(string usr, string psw)
-        {
-            string query = @"";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                SqlCommand command = new SqlCommand(query, connection);
-                try
-                {
-                    connection.Open();
-                    command.ExecuteReader();
+                    command.ExecuteNonQuery();
+                    
                 }
                 catch (Exception ex)
                 {
@@ -53,7 +41,38 @@ namespace TDPC11_G5_Ristorante
                     connection.Close();
                 }
             }
-            return false;
+        }
+        public static bool ValidateLogin(string usr, string psw)
+        {
+            bool toSender = false;
+            string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
+            string query = "SELECT [IDN] FROM [dbo].[Clienti] where [Username] = @username and [Password] = @password and [Deleted] = 0";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    DataTable dt = new DataTable();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@username", usr);
+                    command.Parameters.AddWithValue("@password", psw);
+                    connection.Open();
+                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                    {
+                        da.Fill(dt);
+                    }
+                    if (dt.Rows.Count == 1)
+                        toSender = true;
+                }
+                catch (Exception ex)
+                {
+
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return toSender;
         }
     }
 }
