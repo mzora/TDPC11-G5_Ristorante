@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-4">
                     Inserisci il tuo Nome:
-                   <asp:TextBox ID="TextNome" runat="server" class="form-control"></asp:TextBox>
+                   <asp:TextBox ID="TXTNome" runat="server" class="form-control"></asp:TextBox>
                 </div>
             </div>
             <div class="row">

@@ -33,13 +33,13 @@ namespace TDPC11_G5_Ristorante
         protected global::System.Web.UI.WebControls.TextBox TXTCognome;
 
         /// <summary>
-        /// Controllo TextNome.
+        /// Controllo TXTNome.
         /// </summary>
         /// <remarks>
         /// Campo generato automaticamente.
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextNome;
+        protected global::System.Web.UI.WebControls.TextBox TXTNome;
 
         /// <summary>
         /// Controllo TXTEmail.

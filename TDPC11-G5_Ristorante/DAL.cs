@@ -16,7 +16,7 @@ namespace TDPC11_G5_Ristorante
         {
             
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
-            string query = "insert into [dbo].[DBRistorante.Clienti] ( [Cognome], [Nome], [Email], [Phone], [Username], [Password]) values ( @Cognome, @Nome,  @Email, @Phone,@Username, @Password)";
+            string query = "insert into [dbo].[Clienti] ( [Cognome], [Nome], [Email], [Phone], [Username], [Password]) values ( @Cognome, @Nome,  @Email, @Phone,@Username, @Password)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -46,7 +46,7 @@ namespace TDPC11_G5_Ristorante
         {
             bool toSender = false;
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
-            string query = "SELECT [IDN] FROM [dbo].[Clienti] where [Username] = @username and [Password] = @password and [Deleted] = 0";
+            string query = "SELECT [IDN] FROM [dbo].[Clienti] where [Username] = @username and [Password] = @password";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
