@@ -11,7 +11,7 @@
                 <div id="formItem" class="form-group">
                     <asp:TextBox id="TXTUser" runat="server" CssClass="form-control">Username</asp:TextBox>
                 </div>
-                <div id="formItem" class="form-group">
+                <div id="formItem1" class="form-group">
                     <asp:TextBox id="TXTPsw" runat="server" CssClass="form-control">Password</asp:TextBox>
                 </div>
                 <div id="formItemBtn" class="form-group">
