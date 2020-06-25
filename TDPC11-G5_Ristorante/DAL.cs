@@ -16,7 +16,7 @@ namespace TDPC11_G5_Ristorante
         {
             
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
-            string query = "insert into [dbo].[Clienti] ( [Cognome], [Nome], [Email], [Phone], [Username], [Password]) values ( @Cognome, @Nome,  @Email, @Phone,@Username, @Password)";
+            string query = "insert into [dbo].[Clienti] ( [Username], [Password],[Cognome], [Nome], [Email], [Phone]) values ( @Username, @Password, @Cognome, @Nome,  @Email, @Phone)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
