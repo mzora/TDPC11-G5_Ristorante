@@ -14,6 +14,6 @@ namespace TDPC11_G5_Ristorante
         public string Nome { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public bool Deleted { get; set; }
+       
     }
 }
