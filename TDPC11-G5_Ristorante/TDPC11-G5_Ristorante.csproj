@@ -97,6 +97,7 @@
     <Compile Include="Prenotazione.aspx.designer.cs">
       <DependentUpon>Prenotazione.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PrenotazioneCliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrazioneUtente.aspx.cs">
       <DependentUpon>RegistrazioneUtente.aspx</DependentUpon>
