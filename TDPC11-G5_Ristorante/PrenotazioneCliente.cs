@@ -9,5 +9,6 @@ namespace TDPC11_G5_Ristorante
     {
         public DateTime Date { get; set; }
         public int Coperti { get; set; }
+        public string Cliente { get; set; }
     }
 }

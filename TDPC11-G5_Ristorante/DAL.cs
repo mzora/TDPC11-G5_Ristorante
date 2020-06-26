@@ -108,18 +108,17 @@ namespace TDPC11_G5_Ristorante
             return prenotazioni;
         }
 
-        public static bool insertNewPrenotazione(PrenotazioneCliente p, Cliente c)
+        public static bool insertNewPrenotazione(PrenotazioneCliente p)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
-            string query = "insert into [dbo].[Prenotazioni] ( [DataP], [IDN],[Cognome],[NPostiP]) values ( @datap, @idn,@cognome, @npostip)";
+            string query = "insert into [dbo].[Prenotazioni] ([DataP],[Username],[NPostiP]) values ( @datap, @username, @npostip)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@datap", p.Date);
-                    command.Parameters.AddWithValue("@idn", c.IDN);
-                    command.Parameters.AddWithValue("@cognome", c.Cognome);
+                    command.Parameters.AddWithValue("@username", p.Cliente);
                     command.Parameters.AddWithValue("@npostip", p.Coperti);
                     connection.Open();
                     command.ExecuteNonQuery();
