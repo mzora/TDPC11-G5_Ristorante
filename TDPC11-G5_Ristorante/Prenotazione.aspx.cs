@@ -14,12 +14,10 @@ namespace TDPC11_G5_Ristorante
             if (Session["username"] == null)
                 Response.Redirect("Default.aspx", true);
             LBLWelcome.Text = "Logged as: " + Session["username"].ToString();
-            //generatePrenotazioniTable();
-
-
+            generatePrenotazioniTable();
         }
 
-        protected void BTNLogout_Click(object sender, EventArgs e)
+    protected void BTNLogout_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx", true);
         }
@@ -41,44 +39,45 @@ namespace TDPC11_G5_Ristorante
             prenot.Date = Calendar.SelectedDate;
             prenot.Coperti = Convert.ToInt32(TXTCoperti.Text);
             prenot.Cliente = Session["username"].ToString();
-            DAL.insertNewPrenotazione(prenot);
+
+            if (DAL.insertNewPrenotazione(prenot)) 
+            {
+                LBLOutput.Text = "Prenotazione registrata con successo";
+                generatePrenotazioniTable();
+            }
+            else
+            {
+                LBLOutput.Text = "Prenotazione non avvenuta";
+            }
         }
 
+
         private void generatePrenotazioniTable()
-        {   //TODO********************************************************
-            /*
+        {
             TBLPrenotazioni.Rows.Clear();
             TableRow headerRow = new TableRow();
-            TableCell nameHeaderCell = new TableCell();
-            TableCell lastNameHeaderCell = new TableCell();
-            TableCell ageHeaderCell = new TableCell();
-            TableCell editHeaderCell = new TableCell();
+            TableCell dataHeaderCell = new TableCell();
+            TableCell copertiHeaderCell = new TableCell();
             TableCell deleteHeaderCell = new TableCell();
-            nameHeaderCell.Text = "Nome";
-            lastNameHeaderCell.Text = "Cognome";
-            ageHeaderCell.Text = "Età";
+            dataHeaderCell.Text = "DATA";
+            copertiHeaderCell.Text = "COPERTI";
+
             headerRow.Style.Add("font-weight", "bold");
-            headerRow.Cells.Add(nameHeaderCell);
-            headerRow.Cells.Add(lastNameHeaderCell);
-            headerRow.Cells.Add(ageHeaderCell);
-            headerRow.Cells.Add(editHeaderCell);
+            headerRow.Cells.Add(dataHeaderCell);
+            headerRow.Cells.Add(copertiHeaderCell);
             headerRow.Cells.Add(deleteHeaderCell);
             TBLPrenotazioni.Rows.Add(headerRow);
             TBLPrenotazioni.Attributes.Add("class", "table");
             
-            List<PrenotazioneCliente> prenotazioni = DAL.getPrenotazioni();
+            List<PrenotazioneCliente> prenotazioni = DAL.getPrenotazioni(Session["username"].ToString());
             foreach (PrenotazioneCliente p in prenotazioni)
             {
                 TableRow row = new TableRow();
-                TableCell nameCell = new TableCell();
-                TableCell lastNamecell = new TableCell();
-                TableCell ageCell = new TableCell();
-                //TableCell editButtonCell = new TableCell();
+                TableCell dataCell = new TableCell();
+                TableCell copertiCell = new TableCell();
                 TableCell deleteButtonCell = new TableCell();
-
-                nameCell.Text = p.Nome;
-                lastNamecell.Text = p.Cognome;
-                ageCell.Text = p.Eta;
+                dataCell.Text = (p.Date).ToString();
+                copertiCell.Text = (p.Coperti).ToString();
                 /*
                 Button editButton = new Button();
                 editButton.ID = p.ID.ToString() + "Edit";
@@ -87,23 +86,20 @@ namespace TDPC11_G5_Ristorante
                 editButton.Attributes.Add("class", "btn btn-warning btn-sm");
                 editButtonCell.Controls.Add(editButton);
                 
-
-
                 Button deleteButton = new Button();
-                //deleteButton.ID = p.ID.ToString() + "Delete";
+                deleteButton.ID = p.ID.ToString() + "Delete";
                 deleteButton.Text = "Delete";
                 //deleteButton.Click += this.DeleteButton_Click;
                 deleteButton.Attributes.Add("class", "btn btn-danger btn-sm");
                 deleteButtonCell.Controls.Add(deleteButton);
-
-                row.Cells.Add(nameCell);
-                row.Cells.Add(lastNamecell);
-                row.Cells.Add(ageCell);
+                */
+                row.Cells.Add(dataCell);
+                row.Cells.Add(copertiCell);
                 //row.Cells.Add(editButtonCell);
                 row.Cells.Add(deleteButtonCell);
                 TBLPrenotazioni.Rows.Add(row);
             }
-            TBLPrenotazioni.DataBind();*/
+            TBLPrenotazioni.DataBind();
         }
     }
 }

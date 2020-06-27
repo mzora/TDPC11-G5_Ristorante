@@ -58,7 +58,7 @@
 					
 					<div id="formItemBtn" class="form-group">
 						<asp:Button id="BTNSubmit" runat="server" Text="Prenota" OnClick="BTNSubmit_Click" CssClass="btn btn-link" /> 
-						<asp:Label ID="LBLOutput" runat="server">esito prenotazione..</asp:Label>
+						<asp:Label ID="LBLOutput" runat="server"></asp:Label>
 					</div>
 
 				</div>

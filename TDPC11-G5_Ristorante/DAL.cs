@@ -74,18 +74,18 @@ namespace TDPC11_G5_Ristorante
             return toSender;
         }
 
-        public static List<Prenotazione> getPrenotazioni(int idn, string cognome)
+        public static List<PrenotazioneCliente> getPrenotazioni(string usr)
         {
-            List<Prenotazione> prenotazioni = new List<Prenotazione>();
+            List<PrenotazioneCliente> prenotazioni = new List<PrenotazioneCliente>();
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
-            string query = "SELECT [DataP] FROM [dbo].[Prenotazioni] where [IDN]= @idn AND [Cognome]= @cognome order by CreationDate desc";
+            string query = "SELECT [DataP],[NPostiP] FROM [dbo].[Prenotazioni] WHERE [Cliente] = @username order by DataP DESC";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
-                    //TODO**************************************************************************
                     DataTable dt = new DataTable();
                     SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@username", usr);
                     connection.Open();
                     using (SqlDataAdapter da = new SqlDataAdapter(command))
                     {
@@ -93,12 +93,14 @@ namespace TDPC11_G5_Ristorante
                     }
                     foreach (DataRow row in dt.Rows)
                     {
-
+                        PrenotazioneCliente p = new PrenotazioneCliente();
+                        p.Date = (DateTime)row["DataP"];
+                        p.Coperti = (int)row["NPostiP"];
+                        prenotazioni.Add(p);
                     }
                 }
                 catch (Exception ex)
                 {
-
                 }
                 finally
                 {
@@ -111,14 +113,14 @@ namespace TDPC11_G5_Ristorante
         public static bool insertNewPrenotazione(PrenotazioneCliente p)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
-            string query = "insert into [dbo].[Prenotazioni] ([DataP],[Username],[NPostiP]) values ( @datap, @username, @npostip)";
+            string query = "insert into [dbo].[Prenotazioni] ([DataP], [Cliente], [NPostiP]) values ( @datap, @cliente, @npostip)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
                 {
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@datap", p.Date);
-                    command.Parameters.AddWithValue("@username", p.Cliente);
+                    command.Parameters.AddWithValue("@cliente", p.Cliente);
                     command.Parameters.AddWithValue("@npostip", p.Coperti);
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -126,7 +128,7 @@ namespace TDPC11_G5_Ristorante
                 }
                 catch (Exception ex)
                 {
-
+                    return false;
                 }
                 finally
                 {
