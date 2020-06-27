@@ -85,14 +85,14 @@ namespace TDPC11_G5_Ristorante
                 editButton.Click += this.EditButton_Click;
                 editButton.Attributes.Add("class", "btn btn-warning btn-sm");
                 editButtonCell.Controls.Add(editButton);
-                
+                */
                 Button deleteButton = new Button();
                 deleteButton.ID = p.ID.ToString() + "Delete";
                 deleteButton.Text = "Delete";
-                //deleteButton.Click += this.DeleteButton_Click;
+                deleteButton.Click += this.BTNDelete_Click;
                 deleteButton.Attributes.Add("class", "btn btn-danger btn-sm");
                 deleteButtonCell.Controls.Add(deleteButton);
-                */
+                
                 row.Cells.Add(dataCell);
                 row.Cells.Add(copertiCell);
                 //row.Cells.Add(editButtonCell);
@@ -100,6 +100,12 @@ namespace TDPC11_G5_Ristorante
                 TBLPrenotazioni.Rows.Add(row);
             }
             TBLPrenotazioni.DataBind();
+        }
+
+        protected void BTNDelete_Click(object sender,EventArgs e)
+        {   
+            DAL.deletePrenotazione(Guid.Parse(((Button)sender).ID.Replace("Delete", "")));
+            generatePrenotazioniTable();
         }
     }
 }

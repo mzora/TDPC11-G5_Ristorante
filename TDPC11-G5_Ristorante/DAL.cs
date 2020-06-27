@@ -78,7 +78,7 @@ namespace TDPC11_G5_Ristorante
         {
             List<PrenotazioneCliente> prenotazioni = new List<PrenotazioneCliente>();
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
-            string query = "SELECT [DataP],[NPostiP] FROM [dbo].[Prenotazioni] WHERE [Cliente] = @username order by DataP DESC";
+            string query = "SELECT [ID],[DataP],[NPostiP] FROM [dbo].[Prenotazioni] WHERE [Cliente] = @username order by DataP DESC";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -94,6 +94,7 @@ namespace TDPC11_G5_Ristorante
                     foreach (DataRow row in dt.Rows)
                     {
                         PrenotazioneCliente p = new PrenotazioneCliente();
+                        p.ID = Guid.Parse(row["ID"].ToString());
                         p.Date = (DateTime)row["DataP"];
                         p.Coperti = (int)row["NPostiP"];
                         prenotazioni.Add(p);
@@ -113,7 +114,7 @@ namespace TDPC11_G5_Ristorante
         public static bool insertNewPrenotazione(PrenotazioneCliente p)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
-            string query = "insert into [dbo].[Prenotazioni] ([DataP], [Cliente], [NPostiP]) values ( @datap, @cliente, @npostip)";
+            string query = "insert into [dbo].[Prenotazioni] ([ID], [DataP], [Cliente], [NPostiP]) values ( newid(),@datap, @cliente, @npostip)";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -135,6 +136,30 @@ namespace TDPC11_G5_Ristorante
                     connection.Close();
                 }
                 return false;
+            }
+        }
+
+        public static void deletePrenotazione(Guid id)
+        {
+            string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
+            string query = "DELETE FROM [dbo].[Prenotazioni] WHERE [ID]= @id";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("id", id);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                }
+                finally
+                {
+                    connection.Close();
+                }
+
             }
         }
     }
