@@ -1,7 +1,32 @@
 ﻿body {
     background-color: antiquewhite;
+    padding-top: 120px;
 }
 
-h1, h3 {
+#Menu button:hover {
+    box-shadow: 0 0 8px black;
+}
+
+#nav1 {
+    background-color: antiquewhite;
+}
+
+h1 {
+    font-size: 50px;
+    font-family: 'Tangerine', serif;
+}
+
+h2 {
+    font-size: 40px;
+    font-family: 'Tangerine', serif;
+}
+
+h3 {
+    font-size: 30px;
+    font-family: 'Tangerine', serif;
+}
+
+h4 {
+    font-size: 20px;
     font-family: 'Tangerine', serif;
 }

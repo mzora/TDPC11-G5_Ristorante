@@ -69,6 +69,12 @@
   <ItemGroup>
     <Content Include="Content\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Image\grotta1.jpg" />
+    <Content Include="Image\grotta2.jpg" />
+    <Content Include="Image\grotta3.jpg" />
+    <Content Include="Image\grotta4.jpg" />
+    <Content Include="Image\grotta5.jpg" />
+    <Content Include="Image\grotta6.jpg" />
     <Content Include="Prenotazione.aspx" />
     <Content Include="RegistrazioneUtente.aspx" />
     <Content Include="Web.config" />
