@@ -69,6 +69,12 @@
   <ItemGroup>
     <Content Include="Content\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Image\grotta1.jpg" />
+    <Content Include="Image\grotta2.jpg" />
+    <Content Include="Image\grotta3.jpg" />
+    <Content Include="Image\grotta4.jpg" />
+    <Content Include="Image\grotta5.jpg" />
+    <Content Include="Image\grotta6.jpg" />
     <Content Include="Prenotazione.aspx" />
     <Content Include="RegistrazioneUtente.aspx" />
     <Content Include="Web.config" />
@@ -97,6 +103,7 @@
     <Compile Include="Prenotazione.aspx.designer.cs">
       <DependentUpon>Prenotazione.aspx</DependentUpon>
     </Compile>
+    <Compile Include="PrenotazioneCliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrazioneUtente.aspx.cs">
       <DependentUpon>RegistrazioneUtente.aspx</DependentUpon>

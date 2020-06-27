@@ -11,7 +11,101 @@ namespace TDPC11_G5_Ristorante
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+                Response.Redirect("Default.aspx", true);
+            LBLWelcome.Text = "Logged as: " + Session["username"].ToString();
+            generatePrenotazioniTable();
+        }
 
+    protected void BTNLogout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx", true);
+        }
+
+        protected void BTNCalendar_Click(object sender, EventArgs e)
+        {
+            Calendar.Visible = true;
+        }
+        protected void Calendar_SelectionChanged(object sender, EventArgs e)
+        {
+            DateTime dt = Calendar.SelectedDate;
+            TextBoxDate.Text = dt.ToString("dd/MM/yyyy");
+            Calendar.Visible = false;
+        }
+
+        protected void BTNSubmit_Click(object sender, EventArgs e)
+        {   
+            PrenotazioneCliente prenot = new PrenotazioneCliente();
+            prenot.Date = Calendar.SelectedDate;
+            prenot.Coperti = Convert.ToInt32(TXTCoperti.Text);
+            prenot.Cliente = Session["username"].ToString();
+
+            if (DAL.insertNewPrenotazione(prenot)) 
+            {
+                LBLOutput.Text = "Prenotazione registrata con successo";
+                generatePrenotazioniTable();
+            }
+            else
+            {
+                LBLOutput.Text = "Prenotazione non avvenuta";
+            }
+        }
+
+
+        private void generatePrenotazioniTable()
+        {
+            TBLPrenotazioni.Rows.Clear();
+            TableRow headerRow = new TableRow();
+            TableCell dataHeaderCell = new TableCell();
+            TableCell copertiHeaderCell = new TableCell();
+            TableCell deleteHeaderCell = new TableCell();
+            dataHeaderCell.Text = "DATA";
+            copertiHeaderCell.Text = "COPERTI";
+
+            headerRow.Style.Add("font-weight", "bold");
+            headerRow.Cells.Add(dataHeaderCell);
+            headerRow.Cells.Add(copertiHeaderCell);
+            headerRow.Cells.Add(deleteHeaderCell);
+            TBLPrenotazioni.Rows.Add(headerRow);
+            TBLPrenotazioni.Attributes.Add("class", "table");
+            
+            List<PrenotazioneCliente> prenotazioni = DAL.getPrenotazioni(Session["username"].ToString());
+            foreach (PrenotazioneCliente p in prenotazioni)
+            {
+                TableRow row = new TableRow();
+                TableCell dataCell = new TableCell();
+                TableCell copertiCell = new TableCell();
+                TableCell deleteButtonCell = new TableCell();
+                dataCell.Text = (p.Date).ToString();
+                copertiCell.Text = (p.Coperti).ToString();
+                /*
+                Button editButton = new Button();
+                editButton.ID = p.ID.ToString() + "Edit";
+                editButton.Text = "Edit";
+                editButton.Click += this.EditButton_Click;
+                editButton.Attributes.Add("class", "btn btn-warning btn-sm");
+                editButtonCell.Controls.Add(editButton);
+                */
+                Button deleteButton = new Button();
+                deleteButton.ID = p.ID.ToString() + "Delete";
+                deleteButton.Text = "Delete";
+                deleteButton.Click += this.BTNDelete_Click;
+                deleteButton.Attributes.Add("class", "btn btn-danger btn-sm");
+                deleteButtonCell.Controls.Add(deleteButton);
+                
+                row.Cells.Add(dataCell);
+                row.Cells.Add(copertiCell);
+                //row.Cells.Add(editButtonCell);
+                row.Cells.Add(deleteButtonCell);
+                TBLPrenotazioni.Rows.Add(row);
+            }
+            TBLPrenotazioni.DataBind();
+        }
+
+        protected void BTNDelete_Click(object sender,EventArgs e)
+        {   
+            DAL.deletePrenotazione(Guid.Parse(((Button)sender).ID.Replace("Delete", "")));
+            generatePrenotazioniTable();
         }
     }
 }

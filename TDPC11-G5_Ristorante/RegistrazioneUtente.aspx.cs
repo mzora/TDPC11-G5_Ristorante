@@ -23,7 +23,11 @@ namespace TDPC11_G5_Ristorante
             cliente.Phone = TXTPhone.Text;
             cliente.Username = TXTUsr.Text;
             cliente.Password = TXTPsw.Text;
-            DAL.insertNewCliente(cliente);
+            if (DAL.insertNewCliente(cliente))
+            {
+                //ritorna al alla default per il login
+                Response.Redirect("Default.aspx", true);
+            }
         }
     }
 }
