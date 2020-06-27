@@ -40,17 +40,24 @@ namespace TDPC11_G5_Ristorante
             prenot.Coperti = Convert.ToInt32(TXTCoperti.Text);
             prenot.Cliente = Session["username"].ToString();
 
-            if (DAL.insertNewPrenotazione(prenot)) 
+            if (DAL.verificaDisponibilita(prenot))
             {
-                LBLOutput.Text = "Prenotazione registrata con successo";
-                generatePrenotazioniTable();
+                if (DAL.insertNewPrenotazione(prenot))
+                {
+                    LBLOutput.Text = "Prenotazione registrata con successo";
+                    generatePrenotazioniTable();
+                }
+                else
+                {
+                    LBLOutput.Text = "Prenotazione non avvenuta";
+                }
             }
             else
             {
-                LBLOutput.Text = "Prenotazione non avvenuta";
+                LBLOutput.Text = "Prova altra data, coperti richiesti superiori ai disponibili";
             }
-        }
 
+        }
 
         private void generatePrenotazioniTable()
         {
@@ -78,14 +85,7 @@ namespace TDPC11_G5_Ristorante
                 TableCell deleteButtonCell = new TableCell();
                 dataCell.Text = (p.Date).ToString();
                 copertiCell.Text = (p.Coperti).ToString();
-                /*
-                Button editButton = new Button();
-                editButton.ID = p.ID.ToString() + "Edit";
-                editButton.Text = "Edit";
-                editButton.Click += this.EditButton_Click;
-                editButton.Attributes.Add("class", "btn btn-warning btn-sm");
-                editButtonCell.Controls.Add(editButton);
-                */
+
                 Button deleteButton = new Button();
                 deleteButton.ID = p.ID.ToString() + "Delete";
                 deleteButton.Text = "Delete";
@@ -95,7 +95,7 @@ namespace TDPC11_G5_Ristorante
                 
                 row.Cells.Add(dataCell);
                 row.Cells.Add(copertiCell);
-                //row.Cells.Add(editButtonCell);
+
                 row.Cells.Add(deleteButtonCell);
                 TBLPrenotazioni.Rows.Add(row);
             }
