@@ -30,3 +30,12 @@ h4 {
     font-size: 20px;
     font-family: 'Tangerine', serif;
 }
+
+h5, h6 {
+    font-family: 'Tangerine', serif;
+}
+
+.Welcome {
+    color: #808080;
+    font-size: 12px;
+}

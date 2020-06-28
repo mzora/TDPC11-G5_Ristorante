@@ -59,6 +59,7 @@ namespace TDPC11_G5_Ristorante
 
         }
 
+
         private void generatePrenotazioniTable()
         {
             TBLPrenotazioni.Rows.Clear();
