@@ -111,6 +111,69 @@ namespace TDPC11_G5_Ristorante
             return prenotazioni;
         }
 
+        public static bool verificaDisponibilita(PrenotazioneCliente p)
+        {
+            string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
+            string query = "SELECT * FROM [dbo].[Disponibilita] WHERE [DataP]= @datap";
+            string query_2 = "INSERT INTO [dbo].[Disponibilita] ([DataP]) VALUES (@datap)";
+            string query_3 = "UPDATE [dbo].[Disponibilita] SET [CopertiDisp] = ([CopertiDisp]-@coperti) WHERE [DataP]= @datap";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    DataTable dt = new DataTable();
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@datap", p.Date);
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                    using (SqlDataAdapter da = new SqlDataAdapter(command))
+                    {
+                        da.Fill(dt);
+                    }
+
+
+                    if(dt != null)
+                    {
+                        if (dt.Rows.Count>0)
+                        {
+                            int postiDisponibili = int.Parse(dt.Rows[0]["CopertiDisp"].ToString());
+                            DateTime data = DateTime.Parse(dt.Rows[0]["DataP"].ToString());
+                            if (postiDisponibili >= p.Coperti)
+                            {
+                                //scala i posti alla data in tabella
+                                SqlCommand command_3 = new SqlCommand(query_3, connection);
+                                command_3.Parameters.AddWithValue("@datap", p.Date);
+                                command_3.Parameters.AddWithValue("@coperti", p.Coperti);
+                                command_3.ExecuteNonQuery();
+                                return true;
+                            }
+                        }else{
+                            //inserisci data nella tabella e scala i posti
+                            SqlCommand command_2 = new SqlCommand(query_2, connection);
+                            command_2.Parameters.AddWithValue("@datap", p.Date);
+                            command_2.ExecuteNonQuery();
+
+                            //scala i posti
+                            SqlCommand command_3 = new SqlCommand(query_3, connection);
+                            command_3.Parameters.AddWithValue("@datap", p.Date);
+                            command_3.Parameters.AddWithValue("@coperti", p.Coperti);
+                            command_3.ExecuteNonQuery();
+                            return true;
+                        }
+                    }          
+                }
+                catch (Exception ex)
+                {
+
+                }
+                finally
+                {
+                    connection.Close();
+                }
+                return false;
+            }
+        }
+
         public static bool insertNewPrenotazione(PrenotazioneCliente p)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
