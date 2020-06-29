@@ -54,7 +54,7 @@
                                     <asp:TextBox ID="TXTUser" placeholder="Username" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div id="formItem1" class="form-group">
-                                    <asp:TextBox ID="TXTPsw" placeholder="password" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="TXTPsw" placeholder="password" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div id="formItemBtn" class="form-group">
                                     <asp:Button ID="BTNSubmit" runat="server" Text="Login" OnClick="BTNSubmit_CLick" CssClass="nav-link" />
