@@ -59,7 +59,6 @@ namespace TDPC11_G5_Ristorante
 
         }
 
-
         private void generatePrenotazioniTable()
         {
             TBLPrenotazioni.Rows.Clear();
@@ -92,6 +91,8 @@ namespace TDPC11_G5_Ristorante
                 deleteButton.Text = "Delete";
                 deleteButton.Click += this.BTNDelete_Click;
                 deleteButton.Attributes.Add("class", "btn btn-danger btn-sm");
+                deleteButton.Attributes.Add("btnAttrDate", p.Date.ToString());
+                deleteButton.Attributes.Add("btnAttrCop", p.Coperti.ToString());
                 deleteButtonCell.Controls.Add(deleteButton);
                 
                 row.Cells.Add(dataCell);
@@ -104,8 +105,10 @@ namespace TDPC11_G5_Ristorante
         }
 
         protected void BTNDelete_Click(object sender,EventArgs e)
-        {   
-            DAL.deletePrenotazione(Guid.Parse(((Button)sender).ID.Replace("Delete", "")));
+        {
+            int c = Convert.ToInt32((sender as Button).Attributes["btnAttrCop"]);
+            var d = Convert.ToDateTime((sender as Button).Attributes["btnAttrDate"]);
+            DAL.deletePrenotazione(Guid.Parse(((Button)sender).ID.Replace("Delete","")), c, d);
             generatePrenotazioniTable();
         }
     }
