@@ -15,6 +15,15 @@ namespace TDPC11_G5_Ristorante
     {
 
         /// <summary>
+        /// Controllo LBLOutput.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LBLOutput;
+
+        /// <summary>
         /// Controllo validateLogin.
         /// </summary>
         /// <remarks>
@@ -58,14 +67,5 @@ namespace TDPC11_G5_Ristorante
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BTNReg;
-
-        /// <summary>
-        /// Controllo LBLOutput.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LBLOutput;
     }
 }

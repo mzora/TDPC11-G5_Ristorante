@@ -5,7 +5,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="Body_PlaceHolder" runat="server">
-    <div class="row ">
+     <div class="row ">
         <div class="col-12 ">
             <nav id="nav1" class="navbar fixed-top navbar-expand-lg navbar-primary shadow ">
                 <a class="navbar-brand" href="#">
@@ -36,10 +36,13 @@
             </nav>
         </div>
     </div>
+
+
     <div class="container-fluid">
         <div class="row ">
             <div class="col-10 "></div>
             <div class="col-2 ">
+                <asp:Label ID="LBLOutput" runat="server"></asp:Label>
                 <div class="dropleft">
                     <button class="btn btn-secondary dropleft-toggle " type="button" id="prenotaUnTavolo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <h3>Prenota un tavolo</h3>
@@ -51,19 +54,19 @@
                                     <asp:TextBox ID="TXTUser" placeholder="Username" runat="server" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div id="formItem1" class="form-group">
-                                    <asp:TextBox ID="TXTPsw" placeholder="password" runat="server" CssClass="form-control"></asp:TextBox>
+                                    <asp:TextBox ID="TXTPsw" placeholder="password" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
                                 </div>
                                 <div id="formItemBtn" class="form-group">
                                     <asp:Button ID="BTNSubmit" runat="server" Text="Login" OnClick="BTNSubmit_CLick" CssClass="nav-link" />
                                     <asp:Button ID="BTNReg" runat="server" Text="Registrati" OnClick="BTNReg_CLick" CssClass="btn btn-link text-decoration-none" />
                                 </div>
-                                <asp:Label ID="LBLOutput" runat="server"></asp:Label>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <div class="row ">
             <div class="col-2 "></div>

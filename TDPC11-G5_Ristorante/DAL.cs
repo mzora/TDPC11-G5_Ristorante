@@ -202,10 +202,12 @@ namespace TDPC11_G5_Ristorante
             }
         }
 
-        public static void deletePrenotazione(Guid id)
+        
+        public static void deletePrenotazione(Guid id, int c, DateTime d)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
             string query = "DELETE FROM [dbo].[Prenotazioni] WHERE [ID]= @id";
+            string query_2 = "UPDATE [dbo].[Disponibilita] SET [CopertiDisp] = ([CopertiDisp]+@coperti) WHERE [DataP]= @datap";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 try
@@ -214,6 +216,11 @@ namespace TDPC11_G5_Ristorante
                     command.Parameters.AddWithValue("id", id);
                     connection.Open();
                     command.ExecuteNonQuery();
+
+                    SqlCommand command_2 = new SqlCommand(query_2, connection);
+                    command_2.Parameters.AddWithValue("@datap", d);
+                    command_2.Parameters.AddWithValue("@coperti", c);
+                    command_2.ExecuteNonQuery();
                 }
                 catch (Exception ex)
                 {
