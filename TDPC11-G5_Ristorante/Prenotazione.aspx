@@ -6,40 +6,6 @@
 
 <asp:Content ContentPlaceHolderID="Body_PlaceHolder" runat="server">
 
-
-    <div class="row ">
-        <div class="col-12 ">
-            <nav id="nav1" class="navbar fixed-top navbar-expand-lg navbar-primary shadow ">
-                <a class="navbar-brand" href="#">
-                    <h1><b>La Grotta Di Carmelo</b></h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="Default.aspx">
-                                <h3>Home</h3>
-                                <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Eventi.aspx">
-                                <h3>Eventi</h3>
-                                <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="Contatti.aspx">
-                                <h3>Contatti</h3>
-                                <span class="sr-only">(current)</span></a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
-
-
     <div class="container-fluid">
 
         <form id="prenotazioni" runat="server">
@@ -70,6 +36,7 @@
                                     <asp:LinkButton ID="BTNCalendar" runat="server" OnClick="BTNCalendar_Click">Apri Calendario</asp:LinkButton>
 
                                     <asp:Calendar ID="Calendar" runat="server"
+                                        OnDayRender="DayRender"
                                         BackColor="#FFFFCC"
                                         BorderColor="#FFCC66"
                                         BorderWidth="1px"

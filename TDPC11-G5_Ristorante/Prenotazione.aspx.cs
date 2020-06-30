@@ -17,7 +17,7 @@ namespace TDPC11_G5_Ristorante
             generatePrenotazioniTable();
         }
 
-    protected void BTNLogout_Click(object sender, EventArgs e)
+        protected void BTNLogout_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx", true);
         }
@@ -26,6 +26,15 @@ namespace TDPC11_G5_Ristorante
         {
             Calendar.Visible = true;
         }
+
+        protected void DayRender(object sender, DayRenderEventArgs e)
+        {
+            if (e.Day.Date.CompareTo(DateTime.Now) < 0)
+            {
+                e.Day.IsSelectable = false;
+            }
+        }
+
         protected void Calendar_SelectionChanged(object sender, EventArgs e)
         {
             DateTime dt = Calendar.SelectedDate;
@@ -54,9 +63,8 @@ namespace TDPC11_G5_Ristorante
             }
             else
             {
-                LBLOutput.Text = "Prova altra data, coperti richiesti superiori ai disponibili";
+                LBLOutput.Text = "Prova altra data, coperti richiesti superiori ai disponibili (100)";
             }
-
         }
 
         private void generatePrenotazioniTable()

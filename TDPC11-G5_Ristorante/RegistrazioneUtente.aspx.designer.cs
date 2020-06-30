@@ -24,15 +24,6 @@ namespace TDPC11_G5_Ristorante
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Controllo TXTCognome.
-        /// </summary>
-        /// <remarks>
-        /// Campo generato automaticamente.
-        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TXTCognome;
-
-        /// <summary>
         /// Controllo TXTNome.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace TDPC11_G5_Ristorante
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TXTNome;
+
+        /// <summary>
+        /// Controllo TXTCognome.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TXTCognome;
 
         /// <summary>
         /// Controllo TXTEmail.
@@ -85,5 +85,14 @@ namespace TDPC11_G5_Ristorante
         /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BTNSubmit;
+
+        /// <summary>
+        /// Controllo Message.
+        /// </summary>
+        /// <remarks>
+        /// Campo generato automaticamente.
+        /// Per la modifica, spostare la dichiarazione di campo dal file di progettazione al file code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Message;
     }
 }

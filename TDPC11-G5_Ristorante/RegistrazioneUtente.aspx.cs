@@ -28,6 +28,10 @@ namespace TDPC11_G5_Ristorante
                 //ritorna al alla default per il login
                 Response.Redirect("Default.aspx", true);
             }
+            else
+            {
+                Message.Text = "nome utente già esistente";
+            }
         }
     }
 }

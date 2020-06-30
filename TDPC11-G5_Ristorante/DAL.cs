@@ -8,8 +8,10 @@ using System.Data;
 
 namespace TDPC11_G5_Ristorante
 {
+
     public class DAL
     {
+
         public static bool insertNewCliente(Cliente c)
         {
             string connectionString = WebConfigurationManager.ConnectionStrings["MainDB"].ConnectionString;
@@ -27,11 +29,10 @@ namespace TDPC11_G5_Ristorante
                     command.Parameters.AddWithValue("@Phone", c.Phone);
                     connection.Open();
                     command.ExecuteNonQuery();
-                    return true;
                 }
                 catch (Exception ex)
                 {
-
+                    return false;
                 }
                 finally
                 {
