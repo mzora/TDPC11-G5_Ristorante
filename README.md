@@ -1,5 +1,5 @@
 # TDPC11-G5_Ristorante
-Restaurant single page application: c#, asp.Net, SQL SERVER
+Restaurant web application: c#, asp.Net, SQL SERVER
 
 Si richiede di realizzare il sito web di un ristorante con le seguenti funzionalità:
 
